@@ -7,14 +7,24 @@ const porHacer = require('./TODO/todo');
 
     switch (comando) {
         case 'crear':
-            let tarea = porHacer.crear(argv.descripcion);
-            console.log(tarea);
+            porHacer.crear(argv.descripcion);
             break;
         case 'listar':
-            console.log(colors.bgBlue(`listar`));
+            let tareas = porHacer.listarDB();
+
+            colors.bgBlue(console.log(`Listado de Tareas \n`));
+            for (const tarea of tareas) {
+                console.log(colors.bgCyan(`Tarea: ${tarea.descripcion}`));
+                console.log(colors.bgCyan(`Estado: ${tarea.completado} `));
+            }
+
             break;
         case 'actualizar':
-            console.log(colors.bgBlue(`actualizar`));
+            porHacer.actualizar({
+                descripcion: 'Repasar Ingles',
+                completado: true
+            });
+            console.log(porHacer.listarDB());
             break;
         default:
             console.log(colors.bgBlue(`Comando no reconocido`));
