@@ -2,7 +2,7 @@ const options = {
     descripcion: {
         demand: true,
         alias: 'd',
-        desc: 'Descripcion de la tarea por hacer'
+        desc: 'Descripcion de la tarea'
     }
 };
 
@@ -18,6 +18,9 @@ const argv = require('yargs')
             default: true,
             desc: 'Marca como completada o pendiente la tarea'
         }
+    })
+    .command('borrar', 'Borra una tarea especificada', {
+        ...options
     })
     .help()
     .argv;

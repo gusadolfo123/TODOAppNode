@@ -21,10 +21,17 @@ const porHacer = require('./TODO/todo');
             break;
         case 'actualizar':
             porHacer.actualizar({
-                descripcion: 'Repasar Ingles',
+                descripcion: argv.descripcion,
                 completado: true
             });
             console.log(porHacer.listarDB());
+            break;
+        case 'borrar':
+            if (porHacer.borrarDB(argv.descripcion)) {
+                console.log(porHacer.listarDB());
+            } else
+                console.log('No se elimino el elemento o no existia');
+
             break;
         default:
             console.log(colors.bgBlue(`Comando no reconocido`));

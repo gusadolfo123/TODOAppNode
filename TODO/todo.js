@@ -51,10 +51,23 @@ const listarDB = () => {
     return listadoPorHacer;
 };
 
+const borrarDB = (descripcion) => {
+    cargarDB();
+    let newlistadoPorHacer = listadoPorHacer.filter(tarea => tarea.descripcion !== descripcion);
+    if (newlistadoPorHacer.length !== listadoPorHacer.length) {
+        guardarDB();
+        return true;
+    } else {
+        return false;
+    }
+
+};
+
 module.exports = {
     crear,
     guardarDB,
     cargarDB,
     listarDB,
-    actualizar
+    actualizar,
+    borrarDB
 }
